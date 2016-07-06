@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+ <head>
+ 	<title>Fairfax Neighborhood Map</title>
+  <link rel="stylesheet" href="FFmap.css">
+ 
+ </head>
+ <body>
+ 	<div id='map'></div>
+  
+  <div id="mySidenav" class="sidenav" data-bind="foreach: locations">
+      
+
+    
+ <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">x</a>
+
+
+  <h4 data-bind='text: title'></h4>
+   
+</div>
+
+<div id="main">
+  <h2>Fairfax Neighborhood Places</h2>
+  <span style="font-size:15px;cursor:pointer" onclick="openNav()">☰ Click to see place names</span>
+</div>
+ 	 <script src="knockout-3.2.0.js"></script>
+    <script src="app.js"></script>
+    <script  async defer src="https://maps.googleapis.com/maps/api/js?
+    key=AIzaSyAGdteSja8j88wCesu91hTvqM9LAY7T6_I&libraries=
+    geometry&v=3&callback=initMap"></script>
+  
+ </body>
+ </html> 
