@@ -1,7 +1,38 @@
 
 	html,
-
   body {
+     margin: 0px;
+     height: 100%;
+    font-family: Arial, sans-serif
+    font-size: 14px;}
+    
+   
+    .place 
+    {
+    height: 100%;
+    width: 200px;
+    padding: 1cm;
+    z-index: 50;
+    top: 0;
+    left: 0;
+    background-color: black;
+    padding-top: 150px;
+}
+    
+    .place h4 {font-family: Arial;
+        color: blue;}
+    .search-box {
+      background: blue;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 100;
+      width: 200px;
+      
+      padding: 1cm;
+    }
+
+  /*body {
  		font-family: Arial, sans-serif;
  		height: 100%;
  		margin:0;
@@ -51,7 +82,7 @@ ul {
 
 #main {
     transition: margin-left .5s;
-    padding: 16px;
+    padding: 10px;
 }
 
 @media screen and (max-height: 350px) {
@@ -59,14 +90,16 @@ ul {
   .sidenav a {font-size: 4px;}
   .sidenav ul {font-size: 5px;}
 }
+*/
   #map {
     
-  height: 85%;
+  height: 100%;
   width: 100%;
+  z-index: 1;
    }
    #pano {
     width: 200px;
-    height: 200px;
+    height: 180px;
    }
    .text {
     font-size: 12px;

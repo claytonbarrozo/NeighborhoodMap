@@ -1,5 +1,5 @@
 
-function openNav() {
+/*function openNav() {
     document.getElementById("mySidenav").style.width = "250px";
     document.getElementById("main").style.marginLeft = "250px";
     document.body.style.backgroundColor = "red";
@@ -9,7 +9,7 @@ function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
     document.getElementById("main").style.marginLeft= "0";
     document.body.style.backgroundColor = "#63b5e5";
-}
+}*/
 
  	var map;
  	var markers = [];
@@ -159,21 +159,18 @@ function closeNav() {
 
            //put location titles in side navigation bar
             var Place = function () {
-              var self = this;
+             
       this.title = ko.observable(locations[0].title);  
     ko.applyBindings(new Place());
     };
         
        	var largeInfowindow = new google.maps.InfoWindow();
-       	//this uses the location array to create an array of markers
+       	//this uses the locations array to create an array of markers
        	for (var i=0; i< locations.length; i++){
        		//get the position from the location array.
        	var position = locations[i].location;
+        //get the title from the location array.
        	var title = locations[i].title;
-
-     
-
-
       
        	//create a marker per location, and put into the markers array.
        	var marker = new google.maps.Marker ({
@@ -186,6 +183,8 @@ function closeNav() {
        
        	//push the marker to the array of markers.
        	markers.push(marker);
+       
+
        	
        	//create an onclick event to open an infowindow at each marker.
        	marker.addListener('click', function(){
