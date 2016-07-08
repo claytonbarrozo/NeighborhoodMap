@@ -50,7 +50,7 @@
 <script src="knockout-3.2.0.js"></script>
 <script>
 
-        var initialL = [
+        var initialL = ko.observableArray([
 
         {title: 'Village Sake',location: {lat: 37.986748899999, lng: -122.58891260000001}},
         {title: 'Marin Museum of Bicycling', location: {lat:37.9878821, lng: -122.58968299999998}},
@@ -65,14 +65,15 @@
         {title: 'Iron Springs Pub & Brewery', location: {lat: 37.9859758 ,lng:-122.5839887}},
         {title: 'Wu Tei Tea Temple', location: {lat:37.9873444 ,lng:-122.5876811}}
             
-        ]
+        ]);
     
     
-    var Place = function () {
-        this.title = ko.observable(initialL[0].title);  
-   
-    };
-ko.applyBindings(new Place());
+    
+ko.applyBindings(new initialL());
+
+  var markers = ko.observableArray();
+  markers.push(initialL.location[0]);
+  console.log(markers);
 
 
 </script>
