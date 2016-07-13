@@ -1,174 +1,106 @@
 
 //MODEL
-  var Model = ko.observableArray([
+  var Model = [
 
-        {title: 'Village Sake',location: {lat: 37.986748899999, lng: -122.58891260000001}},
-        {title: 'Marin Museum of Bicycling', location: {lat:37.9878821, lng: -122.58968299999998}},
-        {title: 'Fairfax Cyclery', location: {lat: 37.9883012, lng: -122.5904658}},
-        {title: 'Red Boy Pizza',location: {lat: 37.9961896, lng: 
-          -122.59658619999999}},
-        {title: 'Manor Elementary School', location: {lat:37.996481, lng: -122.59430600000002}},
-        {title: 'White Hill Middle School', location: {lat: 38.002858, lng: -122.60625700000003}},
-        {title: 'Girenghelli Pizza', location: {lat: 48.8879, lng: 2.3299}},
-        {title: 'Peris Bar', location:{lat: 48.8840, lng: 2.3090}},
-        {title: 'Sunshine Bikes', location: {lat: 37.9859543, lng: -122.58375990000}},
-        {title: 'Iron Springs Pub & Brewery', location: {lat: 37.9859758 ,lng:-122.5839887}},
-        {title: 'Wu Tei Tea Temple', location: {lat:37.9873444 ,lng:-122.5876811}}
+        {title: 'Village Sake',
+        lat: 37.986748899999, 
+        lng: -122.58891260000001
           
-        ]);
-ko.applyBindings(new Model());
+        },
+        {title: 'Marin Museum of Bicycling',
+       lat:37.9878821, 
+       lng: -122.58968299999998
+         
+         }, 
+        {title: 'Fairfax Cyclery',
+        lat: 37.9883012, 
+        lng: -122.5904658
+       },
+        {title: 'Red Boy Pizza',
+        lat: 37.9961896,
+        lng:  -122.59658619999999
+         
+         }, 
+        {title: 'Manor Elementary School', 
+        lat:37.996481, 
+       lng: -122.59430600000002
+       },
+        {title: 'White Hill Middle School', 
+       lat: 38.002858,
+        lng: -122.60625700000003
+       },
+        {title: 'Girenghelli Pizza', 
+        lat: 48.8879, 
+        lng: 2.3299}
+        }
 
+        ];
+
+
+       
+        // {title: 'Peris Bar', location:{lat: 48.8840, lng: 2.3090}},
+        // marker: {position: this.location,
+        //   title: this.title,
+        //   animation: google.maps.Animation.DROP,
+        //   id: i},
+        // {title: 'Sunshine Bikes', location: {lat: 37.9859543, lng: -122.58375990000}},
+        // marker: {position: this.location,
+        //   title: this.title,
+        //   animation: google.maps.Animation.DROP,
+        //   id: i},
+        // {title: 'Iron Springs Pub & Brewery', location: {lat: 37.9859758 ,lng:-122.5839887}},
+        // marker: {position: this.location,
+        //   title: this.title,
+        //   animation: google.maps.Animation.DROP,
+        //   id: i},
+        // {title: 'Wu Tei Tea Temple', location: {lat:37.9873444 ,lng:-122.5876811}}
+        // marker: {position: this.location,
+        //   title: this.title,
+        //   animation: google.maps.Animation.DROP,
+        //   id: i}
 
 //VIEW MODEL
 
+ var ViewModel = function(){
+//   //show places on side nav
+   
+  Model = ko.observableArray();
 
-var ViewModel = function() {
-   //creates marker object
-       var marker = new google.maps.Marker ({
-          map: map,
-          position: Model.location,
-          title: Model.title,
-          animation: google.maps.Animation.DROP,
-          //id: i
-        });
-  Model.push(marker);
+  var markers = ko.observableArray();
+  markers.push('marker');
 
- } 
 
-ko.applyBindings(new ViewModel());
+ }
+
+ ko.applyBindings(new ViewModel());
+
 
 //function to load map and start app
 
  	var map;
  
- 	function initMap(){
-    var styles = [
-    {
-        "featureType": "all",
-        "elementType": "geometry",
-        "stylers": [
-            {
-                "color": "#63b5e5"
-            }
-        ]
-    },
-    {
-        "featureType": "all",
-        "elementType": "labels.text.fill",
-        "stylers": [
-            {
-                "gamma": 0.01
-            },
-            {
-                "lightness": 20
-            }
-        ]
-    },
-    {
-        "featureType": "all",
-        "elementType": "labels.text.stroke",
-        "stylers": [
-            {
-                "saturation": -31
-            },
-            {
-                "lightness": -33
-            },
-            {
-                "weight": 2
-            },
-            {
-                "gamma": 0.8
-            }
-        ]
-    },
-    {
-        "featureType": "all",
-        "elementType": "labels.icon",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "landscape",
-        "elementType": "geometry",
-        "stylers": [
-            {
-                "lightness": 30
-            },
-            {
-                "saturation": 30
-            }
-        ]
-    },
-    {
-        "featureType": "poi",
-        "elementType": "geometry",
-        "stylers": [
-            {
-                "saturation": 20
-            }
-        ]
-    },
-    {
-        "featureType": "poi.park",
-        "elementType": "geometry",
-        "stylers": [
-            {
-                "lightness": 20
-            },
-            {
-                "saturation": -20
-            }
-        ]
-    },
-    {
-        "featureType": "road",
-        "elementType": "geometry",
-        "stylers": [
-            {
-                "lightness": 10
-            },
-            {
-                "saturation": -30
-            }
-        ]
-    },
-    {
-        "featureType": "road",
-        "elementType": "geometry.stroke",
-        "stylers": [
-            {
-                "saturation": 25
-            },
-            {
-                "lightness": 25
-            }
-        ]
-    },
-    {
-        "featureType": "water",
-        "elementType": "all",
-        "stylers": [
-            {
-                "lightness": -20
-            }
-        ]
-    }
-]
- 	 
+ 	function initMap(){       
+        	 
        //constructor creates a new map - only center and zoom required
        	map = new google.maps.Map(document.getElementById('map'), {
        		center: {lat: 37.996481, lng: -122.59430600000002},
-          styles: styles,
+          //styles: styles,
        		zoom: 15,
        		mapTypeControl: false
 
-       	});	
-      
-  }      
+       	});
+      }  
+         var marker = new google.maps.Marker ({
+          map: map,
+          position: new google.maps.LatLng(Model.lat, Model.lng);
+          title: title;
+          animation: google.maps.Animation.DROP,
+          //id: i
+         });	
+    
+  
+
+  //};      
        	// var largeInfowindow = new google.maps.InfoWindow();
        	// //this uses the locations array to create an array of markers
        	// for (var i=0; i< locations.length; i++){
