@@ -1,5 +1,6 @@
 
 //MODEL
+  var map;
   var Model = [
 
         {title: 'Village Sake',
@@ -29,55 +30,53 @@
        lat: 38.002858,
         lng: -122.60625700000003
        },
-        {title: 'Girenghelli Pizza', 
-        lat: 48.8879, 
-        lng: 2.3299}
+       {title: 'Wu Tei Tea Temple',
+        lat:37.9873444 ,
+        lng:-122.5876811
+      },
+       {title: 'Sunshine Bikes', 
+       lat: 37.9859543, 
+       lng: -122.58375990000
+     },
+     {title: 'Peris Bar', 
+     lat: 37.9868, 
+     lng: -122.5886
+   },
+        {title: 'Iron Springs Pub & Brewery', 
+        lat: 37.9859758 , 
+        lng: -122.5839887
         }
 
         ];
 
-
-       
-        // {title: 'Peris Bar', location:{lat: 48.8840, lng: 2.3090}},
-        // marker: {position: this.location,
-        //   title: this.title,
-        //   animation: google.maps.Animation.DROP,
-        //   id: i},
-        // {title: 'Sunshine Bikes', location: {lat: 37.9859543, lng: -122.58375990000}},
-        // marker: {position: this.location,
-        //   title: this.title,
-        //   animation: google.maps.Animation.DROP,
-        //   id: i},
-        // {title: 'Iron Springs Pub & Brewery', location: {lat: 37.9859758 ,lng:-122.5839887}},
-        // marker: {position: this.location,
-        //   title: this.title,
-        //   animation: google.maps.Animation.DROP,
-        //   id: i},
-        // {title: 'Wu Tei Tea Temple', location: {lat:37.9873444 ,lng:-122.5876811}}
-        // marker: {position: this.location,
-        //   title: this.title,
-        //   animation: google.maps.Animation.DROP,
-        //   id: i}
+        
 
 //VIEW MODEL
 
  var ViewModel = function(){
 //   //show places on side nav
-   
-  Model = ko.observableArray();
+   var self = this;
+  self.locations = ko.observableArray(Model);
+  self.locations().forEach(function(location){
+    location.marker = new google.maps.Marker ({
+      map: map,
+      position: new google.maps.LatLng(location.lat, location.lng),
+      title: location.title,
+      animation: google.maps.Animation.DROP
+    })
+    // var infowindow = new google.maps.infoWindow({
+    //   content: location.title
+    // });
+    // infowindow.open();
+  //
+      
+    })
+  }
 
-  var markers = ko.observableArray();
-  markers.push('marker');
-
-
- }
-
- ko.applyBindings(new ViewModel());
-
+ 
 
 //function to load map and start app
 
- 	var map;
  
  	function initMap(){       
         	 
@@ -89,25 +88,14 @@
        		mapTypeControl: false
 
        	});
+        ko.applyBindings(new ViewModel());
       }  
-         var marker = new google.maps.Marker ({
-          map: map,
-          position: new google.maps.LatLng(Model.lat, Model.lng);
-          title: title;
-          animation: google.maps.Animation.DROP,
-          //id: i
-         });	
+        	
     
   
 
   //};      
-       	// var largeInfowindow = new google.maps.InfoWindow();
-       	// //this uses the locations array to create an array of markers
-       	// for (var i=0; i< locations.length; i++){
-       	// 	//get the position from the location array.
-       	// var position = locations[i].location;
-        // //get the title from the location array.
-       	// var title = locations[i].title;
+       	
       
        	
        
