@@ -64,21 +64,24 @@
 //   //show places on side nav
    var self = this;
   self.locations = ko.observableArray(Model);
-  self.locations().forEach(function(location){
+  makeMarkers = function(){
+    self.locations().forEach(function(location){
     marker = new google.maps.Marker ({
       map: map,
       position: new google.maps.LatLng(location.lat, location.lng),
       title: location.title,
-      animation: google.maps.Animation.DROP
-       
+      animation: google.maps.Animation.DROP    
 
     })
+
          marker.addListener('click',function(){
           
       infowindow.open(map, marker);
       
       });
-    })   
+  })
+  }       
+       
           var infowindow = new google.maps.InfoWindow;  
         
            //check to make sure infowindow is not already opened on this marker
@@ -95,6 +98,7 @@
             })
                             
  }
+
 //function to load map and start app
 
  
