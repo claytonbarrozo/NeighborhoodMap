@@ -16,12 +16,8 @@
     </div>  
   <ul class = "place" data-bind="foreach: locations">
 
-<li data-bind="text: title" style="color: #fff"></li>   
+<li data-bind="text: title, click: $parent.setMarker" style="color: #fff"></li>   
 </ul>     
-  
-
-
-
 
  	 <script src="knockout-3.2.0.js"></script>
     <script src="app.js"></script>

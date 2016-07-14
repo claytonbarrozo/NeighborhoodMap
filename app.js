@@ -5,52 +5,59 @@
 
         {title: 'Village Sake',
         lat: 37.986748899999, 
-        lng: -122.58891260000001
+        lng: -122.58891260000001,
+        desc: 'Best food in the world'
           
         },
         {title: 'Marin Museum of Bicycling',
        lat:37.9878821, 
-       lng: -122.58968299999998
+       lng: -122.58968299999998,
+       desc: 'Fairfax mountain biking history'
          
          }, 
         {title: 'Fairfax Cyclery',
         lat: 37.9883012, 
-        lng: -122.5904658
+        lng: -122.5904658,
+        desc: 'Local bike shop/repair'
        },
         {title: 'Red Boy Pizza',
         lat: 37.9961896,
-        lng:  -122.59658619999999
+        lng:  -122.59658619999999,
+        desc: 'Pizza delivery place'
          
          }, 
         {title: 'Manor Elementary School', 
         lat:37.996481, 
-       lng: -122.59430600000002
+       lng: -122.59430600000002,
+       desc: 'Our kids school'
        },
         {title: 'White Hill Middle School', 
        lat: 38.002858,
-        lng: -122.60625700000003
+        lng: -122.60625700000003,
+        desc: 'Awesome middle school'
        },
        {title: 'Wu Tei Tea Temple',
         lat:37.9873444 ,
-        lng:-122.5876811
+        lng:-122.5876811,
+        desc: "performance art tea"
       },
        {title: 'Sunshine Bikes', 
        lat: 37.9859543, 
-       lng: -122.58375990000
+       lng: -122.58375990000,
+       desc: 'Best bike shop in Fairfax'
      },
      {title: 'Peris Bar', 
      lat: 37.9868, 
-     lng: -122.5886
+     lng: -122.5886,
+     desc: 'Fairfax cultural icon & best bar'
    },
         {title: 'Iron Springs Pub & Brewery', 
         lat: 37.9859758 , 
-        lng: -122.5839887
+        lng: -122.5839887,
+        desc: 'great beer and bike friendly hangout'
         }
 
-        ];
-
-        
-
+        ];        
 //VIEW MODEL
 
  var ViewModel = function(){
@@ -58,23 +65,36 @@
    var self = this;
   self.locations = ko.observableArray(Model);
   self.locations().forEach(function(location){
-    location.marker = new google.maps.Marker ({
+    marker = new google.maps.Marker ({
       map: map,
       position: new google.maps.LatLng(location.lat, location.lng),
       title: location.title,
       animation: google.maps.Animation.DROP
+       
+
     })
-    // var infowindow = new google.maps.infoWindow({
-    //   content: location.title
-    // });
-    // infowindow.open();
-  //
+         marker.addListener('click',function(){
+          
+      infowindow.open(map, marker);
       
-    })
-  }
-
- 
-
+      });
+    })   
+          var infowindow = new google.maps.InfoWindow;  
+        
+           //check to make sure infowindow is not already opened on this marker
+           //if (infowindow.marker != marker) {
+             //infowindow.marker = marker;
+             self.locations().forEach(function(location){
+             
+              infowindow.setContent(location.desc);
+            })
+             //infowindow.open(map, marker);
+              //make sure the marker property is cleared if infowindow is closed.
+             infowindow.addListener('closeclick',function(){
+               infowindow.setMarker(null);
+            })
+                            
+ }
 //function to load map and start app
 
  
@@ -91,32 +111,9 @@
         ko.applyBindings(new ViewModel());
       }  
         	
-    
-  
-
-  //};      
+   
        	
-      
-       	
-       
-
-       	
-     //   	//create an onclick event to open an infowindow at each marker.
-     //   	marker.addListener('click', function(){
-     //   		populateInfoWindow(this, largeInfowindow);
-     //   	});
-     // }  	
-       
-     //   	function populateInfoWindow(marker, infowindow) {
-     //   		//check to make sure infowindow is not already opened on this marker
-     //   		if (infowindow.marker != marker) {
-     //   			infowindow.marker = marker;
-     //   			infowindow.setContent('');
-     //   			infowindow.open(map, marker);
-     //   			//make sure the marker property is cleared if infowindow is closed.
-     //   			infowindow.addListener('closeclick',function(){
-     //   				infowindow.setMarker(null);
-     //   			});
+     // 
      //   			var streetViewService = new google.maps.StreetViewService();
      //   			var radius = 30;
      //   			function getStreetView(data, status){
