@@ -1,60 +1,60 @@
 
 //MODEL
   var map;
+  var infowindow;
   var Model = [
 
         {title: 'Village Sake',
         lat: 37.986748899999, 
         lng: -122.58891260000001,
-        desc: 'Best food in the world'
+        desc: 'Best food in the world',
+        yelpId: 'village-sake-fairfax'
           
         },
         {title: 'Marin Museum of Bicycling',
        lat:37.9878821, 
        lng: -122.58968299999998,
-       desc: 'Fairfax mountain biking history'
+       desc: 'Fairfax mountain biking history',
+       yelpId: 'marin-museum-of-bicycling-fairfax-2'
          
          }, 
         {title: 'Fairfax Cyclery',
         lat: 37.9883012, 
         lng: -122.5904658,
-        desc: 'Local bike shop/repair'
+        desc: 'Local bike shop/repair',
+        yelpId: 'fairfax-cyclery-fairfax'
        },
         {title: 'Red Boy Pizza',
         lat: 37.9961896,
         lng:  -122.59658619999999,
-        desc: 'Pizza delivery place'
+        desc: 'Pizza delivery place',
+        yelpId: 'red-boy-pizza-fairfax'
          
          }, 
-        {title: 'Manor Elementary School', 
-        lat:37.996481, 
-       lng: -122.59430600000002,
-       desc: 'Our kids school'
-       },
-        {title: 'White Hill Middle School', 
-       lat: 38.002858,
-        lng: -122.60625700000003,
-        desc: 'Awesome middle school'
-       },
-       {title: 'Wu Tei Tea Temple',
+       
+       {title: 'Wu Wei Tea Temple',
         lat:37.9873444 ,
         lng:-122.5876811,
-        desc: "performance art tea"
+        desc: "performance art tea",
+        yelpId: 'wu-wei-tea-temple-fairfax'
       },
        {title: 'Sunshine Bikes', 
        lat: 37.9859543, 
        lng: -122.58375990000,
-       desc: 'Best bike shop in Fairfax'
+       desc: 'Best bike shop in Fairfax',
+       yelpId: 'sunshine-bicycle-center-fairfax'
      },
-     {title: 'Peris Bar', 
+     {title: 'Peris Silver Dollar Bar', 
      lat: 37.9868, 
      lng: -122.5886,
-     desc: 'Fairfax cultural icon & best bar'
+     desc: 'Fairfax cultural icon & best bar',
+     yelpId: 'peris-silver-dollar-bar-fairfax'
    },
         {title: 'Iron Springs Pub & Brewery', 
         lat: 37.9859758 , 
         lng: -122.5839887,
-        desc: 'great beer and bike friendly hangout'
+        desc: 'great beer and bike friendly hangout',
+        yelpId: 'iron-springs-pub-and-brewery-fairfax'
         }
 
         ];        
@@ -64,40 +64,29 @@
 //   //show places on side nav
    var self = this;
   self.locations = ko.observableArray(Model);
-  makeMarkers = function(){
+  
     self.locations().forEach(function(location){
-    marker = new google.maps.Marker ({
+    var marker = new google.maps.Marker ({
       map: map,
       position: new google.maps.LatLng(location.lat, location.lng),
       title: location.title,
       animation: google.maps.Animation.DROP    
 
     })
-
+      location.marker = marker;
          marker.addListener('click',function(){
+          infowindow.setContent('<p>' + location.desc + '</p>');
           
       infowindow.open(map, marker);
       
       });
+  
   })
-  }       
+ // self.openWindow = function(location){
+ //  console.log(location.title);
+ // }
+ }       
        
-          var infowindow = new google.maps.InfoWindow;  
-        
-           //check to make sure infowindow is not already opened on this marker
-           //if (infowindow.marker != marker) {
-             //infowindow.marker = marker;
-             self.locations().forEach(function(location){
-             
-              infowindow.setContent(location.desc);
-            })
-             //infowindow.open(map, marker);
-              //make sure the marker property is cleared if infowindow is closed.
-             infowindow.addListener('closeclick',function(){
-               infowindow.setMarker(null);
-            })
-                            
- }
 
 //function to load map and start app
 
@@ -112,6 +101,7 @@
        		mapTypeControl: false
 
        	});
+        infowindow = new google.maps.InfoWindow;
         ko.applyBindings(new ViewModel());
       }  
         	
