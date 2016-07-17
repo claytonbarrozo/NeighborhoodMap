@@ -14,7 +14,7 @@ function nonce_generate() {
   return (Math.floor(Math.random() * 1e12).toString());
 }
 
-var yelp_url = 'http://api.yelp.com/v2/business/{id}';
+var yelp_url = 'https://api.yelp.com/v2/business/village-sake-fairfax?actionlinks=True';
 
 YELP_KEY = "sIviEjpkR-UPVcBVByApvg";
 YELP_Key_SECRET = "4dGFLphhhoj9m3byKmuQ7AMb9Yw";
@@ -28,8 +28,8 @@ YELP_TOKEN_SECRET = "EwdV_f0Mm0oYYFG_QaqaqTy4JhA";
       oauth_timestamp: Math.floor(Date.now()/1000),
       oauth_signature_method: 'HMAC-SHA1',
       oauth_version : '1.0a',
-      callback: 'cb',// This is crucial to include for jsonp implementation in AJAX or else the oauth-signature will be wrong.
-      id: 'village-sake-fairfax',
+      callback: 'cb',
+      id: 'village-sake-fairfax',// This is crucial to include for jsonp implementation in AJAX or else the oauth-signature will be wrong.
       cll: '37.986748899999%2C-122.58891260000001' 
                       
     };
