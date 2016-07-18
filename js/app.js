@@ -73,6 +73,11 @@
       animation: google.maps.Animation.DROP    
 
     })
+      self.locations().forEach(function(yelpId){
+      var business_id = location.yelpId;
+      console.log(business_id);
+      })
+
       location.marker = marker;
          marker.addListener('click',function(){
           infowindow.setContent('<p>' + location.desc + '</p>');
@@ -81,10 +86,10 @@
       
       });
   
-  })
- // self.openWindow = function(location){
- //  console.log(location.title);
- // }
+  
+
+
+    })
  }       
        
 
