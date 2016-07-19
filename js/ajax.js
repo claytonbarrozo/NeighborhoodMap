@@ -11,15 +11,16 @@
  // */
  function yelpCall(location) {
 
+
+var business_id = location.yelpId;
+//var business_id = 'village-sake-fairfax';
+var yelp_url = 'https://api.yelp.com/v2/business/' + business_id;
+
+console.log(business_id);
+
 function nonce_generate() {
   return (Math.floor(Math.random() * 1e12).toString());
 }
-//var business_id = location.yelpId();
-var business_id = 'village-sake-fairfax';
-var yelp_url = 'https://api.yelp.com/v2/business/' + business_id;
-console.log(business_id);
-
-
 
 YELP_KEY = "sIviEjpkR-UPVcBVByApvg";
 YELP_Key_SECRET = "4dGFLphhhoj9m3byKmuQ7AMb9Yw";
@@ -49,9 +50,9 @@ YELP_TOKEN_SECRET = "EwdV_f0Mm0oYYFG_QaqaqTy4JhA";
       jsonpCallback: 'cb',
       success: function(results) {
         console.log(results);
-         var ratingUrls = results.rating_img_url_small;
+         var ratingUrls = results.rating_img_url;
          //for (var i = 0; i<ratingUrls.length; i++){     
-          infowindow.setContent('<p>' + ratingUrls + '</p>');
+          infowindow.setContent ('<img src = "' + ratingUrls + '"/>');
           infowindow.open(map);
           console.log(results.rating);
          },

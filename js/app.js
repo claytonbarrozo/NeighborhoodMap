@@ -72,6 +72,7 @@
       map: map,
       position: new google.maps.LatLng(location.lat, location.lng),
       title: location.title,
+      id: location.yelpId,
       animation: google.maps.Animation.DROP    
 
     })
@@ -83,7 +84,7 @@
 
       location.marker = marker;
          marker.addListener('click',function(){
-          yelpCall();
+          yelpCall(location);
           infowindow.setContent('<p>' + location.desc + '</p>');   
           
       infowindow.open(map, marker);
