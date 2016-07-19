@@ -49,10 +49,11 @@ YELP_TOKEN_SECRET = "EwdV_f0Mm0oYYFG_QaqaqTy4JhA";
       jsonpCallback: 'cb',
       success: function(results) {
         console.log(results);
-        // var ratingUrls = results[0];
-        //  for (var i = 0; i<ratingUrls.length; i++){
-        //   iwData = ratingUrls[i];
-
+         var ratingUrls = results.rating_img_url_small;
+         //for (var i = 0; i<ratingUrls.length; i++){     
+          infowindow.setContent('<p>' + ratingUrls + '</p>');
+          infowindow.open(map);
+          console.log(results.rating);
          },
       
        
@@ -65,5 +66,5 @@ YELP_TOKEN_SECRET = "EwdV_f0Mm0oYYFG_QaqaqTy4JhA";
     // Send AJAX query via jQuery library.
     $.ajax(settings);
 }
-yelpCall();
+
   

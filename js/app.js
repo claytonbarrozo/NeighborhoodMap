@@ -84,11 +84,13 @@
       location.marker = marker;
          marker.addListener('click',function(){
           yelpCall();
-          infowindow.setContent('<p>' + Object.rating + '</p>');   
+          infowindow.setContent('<p>' + location.desc + '</p>');   
           
       infowindow.open(map, marker);
       
       });
+
+
          function createMarkerButton(marker) {
           //creates a sidebar button
           var ul = document.getElementById('locations');
