@@ -1,4 +1,3 @@
-// function loadData() {
 
 // 	var auth = { 
 //     consumerKey: "sIviEjpkR-UPVcBVByApvg", 
@@ -10,13 +9,17 @@
  // * Generates a random number and returns it as a string for OAuthentication
  // * @return {string}
  // */
-  
+ function yelpCall(location) {
 
 function nonce_generate() {
   return (Math.floor(Math.random() * 1e12).toString());
 }
-
+//var business_id = location.yelpId();
+var business_id = 'village-sake-fairfax';
 var yelp_url = 'https://api.yelp.com/v2/business/' + business_id;
+console.log(business_id);
+
+
 
 YELP_KEY = "sIviEjpkR-UPVcBVByApvg";
 YELP_Key_SECRET = "4dGFLphhhoj9m3byKmuQ7AMb9Yw";
@@ -45,20 +48,22 @@ YELP_TOKEN_SECRET = "EwdV_f0Mm0oYYFG_QaqaqTy4JhA";
       dataType: 'jsonp',
       jsonpCallback: 'cb',
       success: function(results) {
-        //console.log(results);
-        // self.locations = ko.observableArray(Model);
-     //self.locations().forEach(function(location){
-        var yelpResults = ko.observableArray(results);
-        yelpResults().forEach(function(ratings){
-         infowindow.append('location.ratings');
-        })
+        console.log(results);
+        // var ratingUrls = results[0];
+        //  for (var i = 0; i<ratingUrls.length; i++){
+        //   iwData = ratingUrls[i];
+
+         },
+      
        
-      },
       fail: function(xhr, status, error) {
         console.log("An AJAX error occurred: " + status + "\nError: " + error + "\nError detail: " + xhr.responseText);
         // Do stuff on fail
       }
     };
-
+    
     // Send AJAX query via jQuery library.
     $.ajax(settings);
+}
+yelpCall();
+  

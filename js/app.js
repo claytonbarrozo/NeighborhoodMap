@@ -2,6 +2,7 @@
 //MODEL
   var map;
   var infowindow;
+  //var locations;
   var Model = [
 
         {title: 'Village Sake',
@@ -64,6 +65,7 @@
 //   //show places on side nav
    var self = this;
   self.locations = ko.observableArray(Model);
+
   
     self.locations().forEach(function(location){
     var marker = new google.maps.Marker ({
@@ -73,29 +75,39 @@
       animation: google.maps.Animation.DROP    
 
     })
-      self.locations().forEach(function(yelpId){
-      var business_id = location.yelpId;
-      console.log(business_id);
-      })
+       //var business_id = location.yelpId;
+      //self.locations().forEach(function(){
+      
+      //console.log(business_id);
+      //})
 
       location.marker = marker;
          marker.addListener('click',function(){
-          infowindow.setContent('<p>' + location.desc + '</p>');
+          yelpCall();
+          infowindow.setContent('<p>' + Object.rating + '</p>');   
           
       infowindow.open(map, marker);
       
       });
-  
-  
+         function createMarkerButton(marker) {
+          //creates a sidebar button
+          var ul = document.getElementById('locations');
+          var li = document.createelement('li');
+         
+          li.innerHTML = title();
+          ul.appendChild(li);
 
+          google.maps.event.addDomListener(li, "click", function(){
+            google.maps.event.trigger(marker, 'click');
+          });
+         }
+         google.maps.event.addDomListener(infowindow);
 
     })
  }       
        
-
 //function to load map and start app
 
- 
  	function initMap(){       
         	 
        //constructor creates a new map - only center and zoom required
@@ -110,39 +122,7 @@
         ko.applyBindings(new ViewModel());
       }  
         	
-   
-       	
-     // 
-     //   			var streetViewService = new google.maps.StreetViewService();
-     //   			var radius = 30;
-     //   			function getStreetView(data, status){
-     //   			if (status == google.maps.StreetViewStatus.OK) {
-     //   				var nearStreetViewLocation = data.location.latLng;
-     //   				var heading = google.maps.geometry.spherical.computeHeading(
-     //   					nearStreetViewLocation, marker.position);
-     //   				infowindow.setContent('<div>' + marker.title + '</div><div id="pano"></div>');
-     //   				var panoramaOptions = {
-     //   					position: nearStreetViewLocation,
-     //   					pov: {
-     //   						heading: heading,
-     //   						pitch: 30
-
-     //   					}
-     //   				};
-     //   				var panorama = new google.maps.StreetViewPanorama(
-     //   					document.getElementById('pano'), panoramaOptions);
-     //   			} else {
-     //   				infowindow.setContent('<div>' + marker.title + '</div>' +
-     //   					'<div>No Street View Found</div>')
-     //   			}
-     //   		}
-     //   		//use streetview service to get the closest streetview image 
-     //   		streetViewService.getPanoramaByLocation(marker.position, radius, getStreetView);
-     //   		//open the infowindow on the correct marker.
-     //   		infowindow.open(map, marker);
-     //   	}   	
-       	
-     //   }
+  
     
     
 
