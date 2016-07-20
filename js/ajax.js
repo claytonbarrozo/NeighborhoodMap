@@ -50,8 +50,8 @@ YELP_TOKEN_SECRET = "EwdV_f0Mm0oYYFG_QaqaqTy4JhA";
         
          var ratingUrls = results.rating_img_url;
          //for (var i = 0; i<ratingUrls.length; i++){     
-          infowindow.setContent ('<img src = "' + ratingUrls + '"/>');
-          infowindow.open(map);
+          infowindow.setContent ('<img src = "' + ratingUrls + '"/>' + '<p>'+ location.desc + '</p>');
+          infowindow.open(map, location.marker);
           
          },
       

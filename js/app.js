@@ -61,9 +61,11 @@
 
         ];        
 //VIEW MODEL
-
+var query = ko.observable("");
  var ViewModel = function(){
-//   //show places on side nav
+  
+ 
+   //show places on side nav
    var self = this;
   self.locations = ko.observableArray(Model);
     self.locations().forEach(function(location){
@@ -74,39 +76,37 @@
       animation: google.maps.Animation.DROP    
 
     })
+ 
       location.marker = marker;
-         marker.addListener('click',function(){
+
+          function toggleBounce() {
+        if (marker.getAnimation() !== null) {
+          marker.setAnimation(null);
+        } else {
+          marker.setAnimation(google.maps.Animation.BOUNCE);
+        }
+      }
+         markersDoStuff = function() {
+         marker.addListener('click', toggleBounce);
+         
           yelpCall(location);
-          //infowindow.setContent('<p>' + location.desc + '</p>');            
+                 
       infowindow.open(map, marker);
-      });
+    
+      };
+      markersDoStuff();
+      //toggleBounce();
+   })
+  
        self.showInfo = function (location){
        
         yelpCall(location);
 
         google.maps.event.trigger(location.marker,
-          'click');
-        
-        //infowindow.open(map, marker);
-        
-       
-      };   
-
-         // function createMarkerButton(marker) {
-         //  //creates a sidebar button
-         //  var ul = document.getElementById('locations');
-         //  var li = document.createelement('li');
-         
-         //  li.innerHTML = title();
-         //  ul.appendChild(li);
-
-         //  google.maps.event.addDomListener(li, "click", function(){
-         //    google.maps.event.trigger(marker, 'click');
-         //  });
-         // }
-         // google.maps.event.addDomListener(infowindow);
-
-    })
+          'click');      
+      };          
+    
+    
  }       
        
 //function to load map and start app
