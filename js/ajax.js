@@ -16,8 +16,6 @@ var business_id = location.yelpId;
 //var business_id = 'village-sake-fairfax';
 var yelp_url = 'https://api.yelp.com/v2/business/' + business_id;
 
-console.log(business_id);
-
 function nonce_generate() {
   return (Math.floor(Math.random() * 1e12).toString());
 }
@@ -49,12 +47,12 @@ YELP_TOKEN_SECRET = "EwdV_f0Mm0oYYFG_QaqaqTy4JhA";
       dataType: 'jsonp',
       jsonpCallback: 'cb',
       success: function(results) {
-        console.log(results);
+        
          var ratingUrls = results.rating_img_url;
          //for (var i = 0; i<ratingUrls.length; i++){     
           infowindow.setContent ('<img src = "' + ratingUrls + '"/>');
           infowindow.open(map);
-          console.log(results.rating);
+          
          },
       
        

@@ -2,6 +2,7 @@
 //MODEL
   var map;
   var infowindow;
+
   //var locations;
   var Model = [
 
@@ -65,46 +66,43 @@
 //   //show places on side nav
    var self = this;
   self.locations = ko.observableArray(Model);
-
-  
     self.locations().forEach(function(location){
     var marker = new google.maps.Marker ({
       map: map,
       position: new google.maps.LatLng(location.lat, location.lng),
       title: location.title,
-      id: location.yelpId,
       animation: google.maps.Animation.DROP    
 
     })
-       //var business_id = location.yelpId;
-      //self.locations().forEach(function(){
-      
-      //console.log(business_id);
-      //})
-
       location.marker = marker;
          marker.addListener('click',function(){
           yelpCall(location);
-          infowindow.setContent('<p>' + location.desc + '</p>');   
-          
+          //infowindow.setContent('<p>' + location.desc + '</p>');            
       infowindow.open(map, marker);
-      
       });
+       self.showInfo = function (location){
+       
+        yelpCall(location);
 
+        google.maps.event.trigger(location.title, marker,'click');
+        infowindow.open(map, marker);
+        
+       
+      };   
 
-         function createMarkerButton(marker) {
-          //creates a sidebar button
-          var ul = document.getElementById('locations');
-          var li = document.createelement('li');
+         // function createMarkerButton(marker) {
+         //  //creates a sidebar button
+         //  var ul = document.getElementById('locations');
+         //  var li = document.createelement('li');
          
-          li.innerHTML = title();
-          ul.appendChild(li);
+         //  li.innerHTML = title();
+         //  ul.appendChild(li);
 
-          google.maps.event.addDomListener(li, "click", function(){
-            google.maps.event.trigger(marker, 'click');
-          });
-         }
-         google.maps.event.addDomListener(infowindow);
+         //  google.maps.event.addDomListener(li, "click", function(){
+         //    google.maps.event.trigger(marker, 'click');
+         //  });
+         // }
+         // google.maps.event.addDomListener(infowindow);
 
     })
  }       
