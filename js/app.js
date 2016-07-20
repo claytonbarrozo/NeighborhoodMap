@@ -84,8 +84,10 @@
        
         yelpCall(location);
 
-        google.maps.event.trigger(location.title, marker,'click');
-        infowindow.open(map, marker);
+        google.maps.event.trigger(location.marker,
+          'click');
+        
+        //infowindow.open(map, marker);
         
        
       };   
