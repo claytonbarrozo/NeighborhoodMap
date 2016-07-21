@@ -12,7 +12,7 @@
 
     <div class = "search-box">    
      <h4>Fairfax Neighborhood Places</h4>           
-    <input placeholder="Filter" type="search" name="q" data-bind="value: query, valueUpdate: 'keyup'" autocomplete="off">
+    <input placeholder="Filter" data-bind="textInput: query, event: {keyup: showQuery}">
     </div>  
   <ul class = "place" data-bind="foreach: locations">
 
