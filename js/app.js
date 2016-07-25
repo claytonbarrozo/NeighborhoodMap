@@ -4,6 +4,7 @@
   var infowindow;
 
   //var locations;
+
   var Model = [
 
         {title: 'Village Sake',
@@ -72,12 +73,48 @@
 
  var ViewModel = function(){
    var self = this;
-    self.query = ko.observable();
-   self.showQuery = function(){
-   //  //if location.genre = self.query etc
-    console.log(self.query());
-    }
-  self.locations = ko.observableArray(Model);
+    self.query = ko.observable();//property to store the filter
+    self.locations = ko.observableArray(Model);  
+   
+    self.showQuery = ko.computed(function(location){
+     var filter = self.query();
+     return ko.utils.arrayFilter(self.locations(), function(location){
+      if (location.title.indexOf(filter) > -1){
+        if (location.marker) location.marker.setVisible(true);
+        return true;
+      }
+      // else {
+      //   location.marker.setVisible(false);
+      //   return false;
+      // }
+     })
+    }, self); 
+     // if (!filter) {
+     //  return self.locations();
+     // }
+      // else {
+      //   return ko.utils.arrayFilter(self.locations(), function(location) {
+      //     return (location.title.toLowerCase()).indexOf(filter) > -1;
+      //       });
+          
+      //   };
+      // });
+       // self.query = ko.pureComputed({
+    //   read: self.acceptedQueryValue,
+    //   //var filter = self.query();
+    //   write: function(value) {
+    //     if (!self.query()) {
+    //       self.lastInputWasValid(false);
+    //     //console.log('nope');
+    //   }
+    //     else {
+    //       self.lastInputWasValid(true);
+    //       self.acceptedQueryValue(value);
+    //       console.log('yup');
+    //     }
+    //   },
+    //   owner: self
+    // });
     self.locations().forEach(function(location){
     var marker = new google.maps.Marker ({
       map: map,
