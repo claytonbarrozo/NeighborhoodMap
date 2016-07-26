@@ -1,14 +1,4 @@
 
-// 	var auth = { 
-//     consumerKey: "sIviEjpkR-UPVcBVByApvg", 
-//     consumerSecret: "4dGFLphhhoj9m3byKmuQ7AMb9Yw",
-//     accessToken: "0In4SF1qFjsutKlMoJTx9sIIEUGHECUO",
-//     accessTokenSecret: "EwdV_f0Mm0oYYFG_QaqaqTy4JhA",
-//   };
-
- // * Generates a random number and returns it as a string for OAuthentication
- // * @return {string}
- // */
  function yelpCall(location) {
 
 

@@ -3,8 +3,6 @@
   var map;
   var infowindow;
 
-  //var locations;
-
   var Model = [
 
         {title: 'Village Sake',
@@ -82,20 +80,33 @@
      var filter = self.query().toLowerCase();
      //simplifies the ko observable
       if (!filter) {
+        //code to show all map markers
+        for (var i=0; i<self.locations().length; i++){
+          //if self.locations.marker is defined, i.e. map has loaded
+          if (self.locations()[i].marker) {
+            self.locations()[i].marker.setVisible(true);
+          }
+        }
       return self.locations();
      }
       else {
         return ko.utils.arrayFilter(self.locations(), function(location) {
           
-          return location.genre.toLowerCase().indexOf(filter) > -1;
-          
+          if (location.genre.toLowerCase().indexOf(filter) > -1) {
+           //code to show markers when search filter used
+
+           location.marker.setVisible(true);
+           return true;//show list item
+          }
+          else {
+            location.marker.setVisible(false);//hides markers
+            return false;//hide list item
+          }        
             }); 
 
        }
        });    
      
-     
-    
     self.locations().forEach(function(location){
     var marker = new google.maps.Marker ({
       map: map,
