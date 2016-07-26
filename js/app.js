@@ -12,7 +12,7 @@
         lng: -122.58891260000001,
         desc: 'Best food in the world',
         yelpId: 'village-sake-fairfax',
-        genre: 'restaurant'
+        genre: 'restaurant, food'
           
         },
         {title: 'Marin Museum of Bicycling',
@@ -35,7 +35,7 @@
         lng:  -122.59658619999999,
         desc: 'Pizza delivery place',
         yelpId: 'red-boy-pizza-fairfax',
-        genre: 'restaurant'
+        genre: 'restaurant, food'
          
          }, 
        
@@ -65,7 +65,7 @@
         lng: -122.5839887,
         desc: 'great beer and bike friendly hangout',
         yelpId: 'iron-springs-pub-and-brewery-fairfax',
-        genre:'restaurant, pub'
+        genre:'restaurant, pub, food'
         }
 
         ];        
@@ -73,48 +73,29 @@
 
  var ViewModel = function(){
    var self = this;
-    self.query = ko.observable();//property to store the filter
-    self.locations = ko.observableArray(Model);  
+    self.query = ko.observable('');//property to store the filter, empty str so not undefined in computed function
+    self.locations = ko.observableArray(Model);//turns data into ObArray
+
    
-    self.showQuery = ko.computed(function(location){
-     var filter = self.query();
-     return ko.utils.arrayFilter(self.locations(), function(location){
-      if (location.title.indexOf(filter) > -1){
-        if (location.marker) location.marker.setVisible(true);
-        return true;
-      }
-      // else {
-      //   location.marker.setVisible(false);
-      //   return false;
-      // }
-     })
-    }, self); 
-     // if (!filter) {
-     //  return self.locations();
-     // }
-      // else {
-      //   return ko.utils.arrayFilter(self.locations(), function(location) {
-      //     return (location.title.toLowerCase()).indexOf(filter) > -1;
-      //       });
+    self.showQuery = ko.computed(function(locations){
+      
+     var filter = self.query().toLowerCase();
+     //simplifies the ko observable
+      if (!filter) {
+      return self.locations();
+     }
+      else {
+        return ko.utils.arrayFilter(self.locations(), function(location) {
           
-      //   };
-      // });
-       // self.query = ko.pureComputed({
-    //   read: self.acceptedQueryValue,
-    //   //var filter = self.query();
-    //   write: function(value) {
-    //     if (!self.query()) {
-    //       self.lastInputWasValid(false);
-    //     //console.log('nope');
-    //   }
-    //     else {
-    //       self.lastInputWasValid(true);
-    //       self.acceptedQueryValue(value);
-    //       console.log('yup');
-    //     }
-    //   },
-    //   owner: self
-    // });
+          return location.genre.toLowerCase().indexOf(filter) > -1;
+          
+            }); 
+
+       }
+       });    
+     
+     
+    
     self.locations().forEach(function(location){
     var marker = new google.maps.Marker ({
       map: map,
@@ -125,6 +106,7 @@
     })
  
       location.marker = marker;
+
       marker.addListener('click', function(){
            
           yelpCall(location);
@@ -141,13 +123,13 @@
           'click');      
       };          
   })  
-    
+   
  }       
-       
+     
 //function to load map and start app
 
  	function initMap(){       
-        	 
+        	  
        //constructor creates a new map - only center and zoom required
        	map = new google.maps.Map(document.getElementById('map'), {
        		center: {lat: 37.996481, lng: -122.59430600000002},
@@ -157,7 +139,7 @@
 
        	});
         infowindow = new google.maps.InfoWindow;
-        ko.applyBindings(new ViewModel());
+         ko.applyBindings(new ViewModel()); 
       }  
         	
   
