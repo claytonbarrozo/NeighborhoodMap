@@ -133,7 +133,13 @@
         google.maps.event.trigger(location.marker,
           'click');      
       };          
-  })  
+  }) 
+  var icon = document.querySelector('#icon');
+  var drawer = document.querySelector('.place', '.search-box'); 
+   icon.addEventListener('click', function(e){
+    drawer.classList.toggle('open');
+    e.stopPropagation();
+   });
    
  }       
      
@@ -266,7 +272,7 @@
        		mapTypeControl: false
 
        	});
-        
+
         infowindow = new google.maps.InfoWindow;
 
 
