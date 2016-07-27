@@ -17,8 +17,7 @@
     top: 0;
     left: 0;
     position: fixed;
-    transform: translate(-300px,0);
-    transition: transform 0.3s ease;
+   
     background-color: grey;
     padding-top: 150px;
 }
@@ -35,8 +34,7 @@
       left: 0;
       z-index: 100;
       width: 200px;
-      transform: translate(-300px,0);
-      transition: transform 0.3s ease;
+      
       padding: 1cm;
     }
     .search-box.open {
@@ -59,11 +57,15 @@
      }
     .place {
       position: relative;
-      transform: translate(0,0);
+       transform: translate(-300px,0);
+    transition: transform 0.3s ease;
+     
     }
     .search-box {
       position: relative;
-      transform: translate(0,0);
+      transform: translate(-300px,0);
+      transition: transform 0.3s ease;
+      
     }
   body {
     display: flex;
@@ -71,7 +73,8 @@
 
   }
   #map {
-    width: auto;
+    width: 100%;
+    height: 100%;
     flex-grow: 1;
   }
 
