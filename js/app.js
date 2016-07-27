@@ -33,7 +33,7 @@
         lng:  -122.59658619999999,
         desc: 'Pizza delivery place',
         yelpId: 'red-boy-pizza-fairfax',
-        genre: 'restaurant, food'
+        genre: 'restaurant, pizza, food'
          
          }, 
        
@@ -108,14 +108,14 @@
        });    
      
     self.locations().forEach(function(location){
+      
     var marker = new google.maps.Marker ({
       map: map,
       position: new google.maps.LatLng(location.lat, location.lng),
       title: location.title,
-      animation: google.maps.Animation.DROP    
-
+      animation: google.maps.Animation.DROP     
     })
- 
+      
       location.marker = marker;
 
       marker.addListener('click', function(){
@@ -126,7 +126,7 @@
             location.marker.setAnimation(null);
           }, 750);
 });
-         
+
   
        self.showInfo = function (location){
 
@@ -262,11 +262,14 @@
        	map = new google.maps.Map(document.getElementById('map'), {
        		center: {lat: 37.996481, lng: -122.59430600000002},
           styles: styles,
-       		zoom: 14,
+       		zoom: 15,
        		mapTypeControl: false
 
        	});
+        
         infowindow = new google.maps.InfoWindow;
+
+
          ko.applyBindings(new ViewModel()); 
       }  
         	

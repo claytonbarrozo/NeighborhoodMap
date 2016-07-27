@@ -17,10 +17,15 @@
     top: 0;
     left: 0;
     position: fixed;
-    background-color: black;
+    transform: translate(-300px,0);
+    transition: transform 0.3s ease;
+    background-color: grey;
     padding-top: 150px;
 }
-    
+   .place.open {
+    -webkit-transform: translate(0,0);
+    transform: translate(0,0);
+   } 
     .place h4 {font-family: Arial;
         color: blue;}
     .search-box {
@@ -30,10 +35,14 @@
       left: 0;
       z-index: 100;
       width: 200px;
-      
+      transform: translate(-300px,0);
+      transition: transform 0.3s ease;
       padding: 1cm;
     }
-
+    .search-box.open {
+      -webkit-transform: translate(0,0);
+    transform: translate(0,0);
+   } 
 
   #map {
     
@@ -41,10 +50,32 @@
   width: 100%;
   z-index: 1;
    }
-   #pano {
-    width: 200px;
-    height: 180px;
-   }
-   .text {
-    font-size: 12px;
-   }
+  @media screen and (max-width: 500px) {
+   #icon {
+      width: 35px;
+      height: 5px;
+      background-color: black;
+      margin: 6px 0;
+     }
+    .place {
+      position: relative;
+      transform: translate(0,0);
+    }
+    .search-box {
+      position: relative;
+      transform: translate(0,0);
+    }
+  body {
+    display: flex;
+    flex-flow: row nowrap;
+
+  }
+  #map {
+    width: auto;
+    flex-grow: 1;
+  }
+
+  }
+   
+     
+   
