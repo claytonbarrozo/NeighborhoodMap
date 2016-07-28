@@ -141,7 +141,7 @@ var ViewModel = function(){
     window.setTimeout(function() {
       //map.panTo(marker.getPosition());
        map.setCenter(marker.getPosition());
-    }, 2000);
+    }, 3000);
   });          
   });
         
