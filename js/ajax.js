@@ -46,7 +46,7 @@ YELP_TOKEN_SECRET = "EwdV_f0Mm0oYYFG_QaqaqTy4JhA";
          },
       
        
-      fail: function(xhr, status, error) {
+      error: function(xhr, status, error) {
         alert("An AJAX error occurred: " + status + "\nError: " + error + "\nError detail: " + xhr.responseText);
         // Do stuff on fail
       }

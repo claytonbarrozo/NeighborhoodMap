@@ -82,7 +82,8 @@ var ViewModel = function(){
       else {
         return ko.utils.arrayFilter(self.locations(), function(location) {
           
-          if (location.genre.toLowerCase().indexOf(filter) > -1) {
+          if ((location.genre.toLowerCase().indexOf(filter) > -1) ||
+            (location.title.toLowerCase().indexOf(filter) > -1)) {
            //code to show markers when search filter used
 
            location.marker.setVisible(true);
@@ -108,35 +109,29 @@ var ViewModel = function(){
       animation: google.maps.Animation.DROP   
         
     }); 
-      //bounds.extend(marker.position);
+      bounds.extend(marker.position);
       location.marker = marker;  
 
       marker.addListener('click', function(){
            
           yelpCall(location);
-          
+          //map.setCenter(marker.getPosition());
           marker.setAnimation(google.maps.Animation.BOUNCE);
           setTimeout(function(){
             location.marker.setAnimation(null);
           }, 750);
-       });
-       
-       self.showInfo = function (location){
+       });    
+               
+  });
+    self.showInfo = function (location){
         google.maps.event.trigger(location.marker,
           'click');      
         };
-          map.addListener('bounds_changed', function() {
-    
-    window.setTimeout(function() {
-      //map.panTo(marker.getPosition());
-       map.setCenter(marker.getPosition());
-    }, 3000);
-   });          
-  });
+    map.fitBounds(bounds);
   };     
      
 //function to load map and start app
-
+var bounds;
   function initMap(){ 
 
   var styles = [
@@ -265,7 +260,7 @@ var ViewModel = function(){
 
         });
     
-
+        bounds = new google.maps.LatLngBounds();
         infowindow = new google.maps.InfoWindow();
        
 
