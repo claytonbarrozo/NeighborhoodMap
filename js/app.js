@@ -28,14 +28,14 @@
         yelpId: 'fairfax-cyclery-fairfax',
         genre: 'bike, bikes'
        },
-        {title: 'Red Boy Pizza',
-        lat: 37.9961896,
-        lng:  -122.59658619999999,
-        desc: 'Pizza delivery place',
-        yelpId: 'red-boy-pizza-fairfax',
-        genre: 'restaurant, pizza, food'
+        // {title: 'Red Boy Pizza',
+        // lat: 37.9961896,
+        // lng:  -122.59658619999999,
+        // desc: 'Pizza delivery place',
+        // yelpId: 'red-boy-pizza-fairfax',
+        // genre: 'restaurant, pizza, food'
          
-         }, 
+        //  }, 
        
        {title: 'Wu Wei Tea Temple',
         lat:37.9873444 ,
@@ -106,11 +106,9 @@ var ViewModel = function(){
        }
        }); 
           
-     // bounds =  function(location)  {
-     //    var newBounds = new google.maps.LatLngBounds();
-     //   };  
       
-
+    var bounds = new google.maps.LatLngBounds();
+        
     self.locations().forEach(function(location){
       
     var marker = new google.maps.Marker ({
@@ -121,7 +119,7 @@ var ViewModel = function(){
       animation: google.maps.Animation.DROP   
         
     }); 
-
+      bounds.extend(marker.position);
       location.marker = marker;  
 
       marker.addListener('click', function(){
@@ -139,9 +137,9 @@ var ViewModel = function(){
           'click');      
       };          
   });
-       //bounds.extend(location.marker.position);
-       // map.fitBounds(bounds);
-       // map.setCenter(map.getCenter());
+       
+        map.fitBounds(bounds);
+       map.setCenter(map.getCenter());
    };
 
      
@@ -283,9 +281,9 @@ var ViewModel = function(){
           mapTypeControl: false
 
         });
-         map.addListener('center_changed', function() {
-        map.setCenter(marker.getPosition());
-  });
+  //        map.addListener('center_changed', function() {
+  //       map.setCenter(marker.getPosition());
+  // });
 
   // marker.addListener('click', function() {
   //   map.setZoom(8);
