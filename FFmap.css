@@ -1,84 +1,38 @@
 
-	html,
-  body {
-     margin: 0px;
-     height: 100%;
-    font-family: Arial, sans-serif
-    font-size: 9px;}
-    
-   
-    .place 
-    {
-    height: 100%;
-    width: 150px;
-    padding: 1cm;
-
-    z-index: 50;
-    top: 0;
-    left: 0;
-    position: fixed;
-   
-    background-color: grey;
-    padding-top: 150px;
+	html,body {
+height:100%;
+font-family:Arial, sans-serif;
+margin:0;
 }
-   .place.open {
-    -webkit-transform: translate(0,0);
-    transform: translate(0,0);
-   } 
-    .place h6 {font-family: Arial;
-        color: blue;}
-    .search-box {
-      background: #63b5e5;
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: 100;
-      width: 150px;
-      
-      padding: 1cm;
-    }
-    .search-box.open {
-      -webkit-transform: translate(0,0);
-    transform: translate(0,0);
-   } 
 
-  #map {
-    
-  height: 100%;
-  width: 100%;
-  z-index: 1;
-   }
-  @media screen and (max-width: 500px) {
-   #icon {
-      width: 35px;
-      height: 5px;
-      background-color: black;
-      margin: 6px 0;
-     }
-    .place {
-      position: relative;
-       transform: translate(-300px,0);
-    transition: transform 0.3s ease;
-     
-    }
-    .search-box {
-      position: relative;
-      transform: translate(-300px,0);
-      transition: transform 0.3s ease;
-      
-    }
-  body {
-    display: flex;
-    flex-flow: row nowrap;
+.place {
+height:100%;
+width:10%;
+font-size:small;
+z-index:50;
+top:0;
+left:0;
+position:fixed;
+background-color:grey;
+font-family:Arial;
+color:blue;
+padding:150px 1cm 1cm;
+}
 
-  }
-  #map {
-    width: 100%;
-    height: 100%;
-    flex-grow: 1;
-  }
+.search-box {
+background:#63b5e5;
+position:fixed;
+top:0;
+left:0;
+z-index:100;
+width:10%;
+font-size:small;
+padding:1cm;
+}
 
-  }
-   
-     
+#map {
+height:100%;
+width:100%;
+z-index:1;
+}
    

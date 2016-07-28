@@ -27,16 +27,7 @@
         desc: 'Local bike shop/repair',
         yelpId: 'fairfax-cyclery-fairfax',
         genre: 'bike, bikes'
-       },
-        // {title: 'Red Boy Pizza',
-        // lat: 37.9961896,
-        // lng:  -122.59658619999999,
-        // desc: 'Pizza delivery place',
-        // yelpId: 'red-boy-pizza-fairfax',
-        // genre: 'restaurant, pizza, food'
-         
-        //  }, 
-       
+       },       
        {title: 'Wu Wei Tea Temple',
         lat:37.9873444 ,
         lng:-122.5876811,
@@ -66,7 +57,7 @@
         genre:'restaurant, pub, food'
         }
 
-        ];        
+    ];        
 //VIEW MODEL
 var ViewModel = function(){
    var self = this;
@@ -106,8 +97,6 @@ var ViewModel = function(){
        }
        }); 
           
-      
-    //var bounds = new google.maps.LatLngBounds();
         
     self.locations().forEach(function(location){
       
@@ -130,34 +119,21 @@ var ViewModel = function(){
           setTimeout(function(){
             location.marker.setAnimation(null);
           }, 750);
-});
+       });
        
        self.showInfo = function (location){
         google.maps.event.trigger(location.marker,
           'click');      
-      };
+        };
           map.addListener('bounds_changed', function() {
     
     window.setTimeout(function() {
       //map.panTo(marker.getPosition());
        map.setCenter(marker.getPosition());
     }, 3000);
-  });          
+   });          
   });
-        
-        // map.fitBounds(bounds);
-        // map.setCenter(map.getCenter());
-   };
-
-     
-  var icon = document.querySelector('#icon');
-  var drawer = document.querySelector('.place', '.search-box'); 
-   icon.addEventListener('click', function(e){
-    drawer.classList.toggle('open');
-    e.stopPropagation();
-   });
-
-        
+  };     
      
 //function to load map and start app
 
@@ -282,7 +258,7 @@ var ViewModel = function(){
             
        //constructor creates a new map - only center and zoom required
         map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: 37.996481, lng: -122.59430600000002},
+          center: {lat: 37.9873444, lng: -122.5876811},
           styles: styles,
           zoom: 15,
           mapTypeControl: false
