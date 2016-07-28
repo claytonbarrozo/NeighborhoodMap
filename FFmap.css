@@ -4,13 +4,13 @@
      margin: 0px;
      height: 100%;
     font-family: Arial, sans-serif
-    font-size: 14px;}
+    font-size: 9px;}
     
    
     .place 
     {
     height: 100%;
-    width: 200px;
+    width: 150px;
     padding: 1cm;
 
     z-index: 50;
@@ -25,7 +25,7 @@
     -webkit-transform: translate(0,0);
     transform: translate(0,0);
    } 
-    .place h4 {font-family: Arial;
+    .place h6 {font-family: Arial;
         color: blue;}
     .search-box {
       background: #63b5e5;
@@ -33,7 +33,7 @@
       top: 0;
       left: 0;
       z-index: 100;
-      width: 200px;
+      width: 150px;
       
       padding: 1cm;
     }

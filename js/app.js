@@ -107,7 +107,7 @@ var ViewModel = function(){
        }); 
           
       
-    var bounds = new google.maps.LatLngBounds();
+    //var bounds = new google.maps.LatLngBounds();
         
     self.locations().forEach(function(location){
       
@@ -119,7 +119,7 @@ var ViewModel = function(){
       animation: google.maps.Animation.DROP   
         
     }); 
-      bounds.extend(marker.position);
+      //bounds.extend(marker.position);
       location.marker = marker;  
 
       marker.addListener('click', function(){
@@ -135,11 +135,18 @@ var ViewModel = function(){
        self.showInfo = function (location){
         google.maps.event.trigger(location.marker,
           'click');      
-      };          
+      };
+          map.addListener('bounds_changed', function() {
+    
+    window.setTimeout(function() {
+      //map.panTo(marker.getPosition());
+       map.setCenter(marker.getPosition());
+    }, 2000);
+  });          
   });
-       
-        map.fitBounds(bounds);
-       map.setCenter(map.getCenter());
+        
+        // map.fitBounds(bounds);
+        // map.setCenter(map.getCenter());
    };
 
      
@@ -281,14 +288,7 @@ var ViewModel = function(){
           mapTypeControl: false
 
         });
-  //        map.addListener('center_changed', function() {
-  //       map.setCenter(marker.getPosition());
-  // });
-
-  // marker.addListener('click', function() {
-  //   map.setZoom(8);
-  //   map.setCenter(marker.getPosition());
-  // });
+    
 
         infowindow = new google.maps.InfoWindow();
        
