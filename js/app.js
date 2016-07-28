@@ -68,8 +68,7 @@
 
         ];        
 //VIEW MODEL
-
- var ViewModel = function(){
+var ViewModel = function(){
    var self = this;
     self.query = ko.observable('');//property to store the filter, empty str so not undefined in computed function
     self.locations = ko.observableArray(Model);//turns data into ObArray
@@ -107,43 +106,45 @@
        }
        }); 
           
-     bounds =  function(location)  {
-        var newBounds = new google.maps.LatLngBounds()
-         
-         map.fitBounds(newBounds);
-       }
+     // bounds =  function(location)  {
+     //    var newBounds = new google.maps.LatLngBounds();
+     //   };  
+      
 
     self.locations().forEach(function(location){
       
     var marker = new google.maps.Marker ({
+
       map: map,
       position: new google.maps.LatLng(location.lat, location.lng),
       title: location.title,
       animation: google.maps.Animation.DROP   
         
-    })       
-      location.marker = marker;
-      bounds.extend(marker.position);
+    }); 
 
-      
+      location.marker = marker;  
 
       marker.addListener('click', function(){
            
           yelpCall(location);
+          
           marker.setAnimation(google.maps.Animation.BOUNCE);
           setTimeout(function(){
             location.marker.setAnimation(null);
           }, 750);
 });
-
+       
        self.showInfo = function (location){
         google.maps.event.trigger(location.marker,
           'click');      
       };          
-  })
-    
+  });
+       //bounds.extend(location.marker.position);
+       // map.fitBounds(bounds);
+       // map.setCenter(map.getCenter());
+   };
 
-     bounds();
+     
   var icon = document.querySelector('#icon');
   var drawer = document.querySelector('.place', '.search-box'); 
    icon.addEventListener('click', function(e){
@@ -151,11 +152,11 @@
     e.stopPropagation();
    });
 
- }       
+        
      
 //function to load map and start app
 
- 	function initMap(){ 
+  function initMap(){ 
 
   var styles = [
      {
@@ -272,29 +273,31 @@
              }
          ]
      }
-  ]      
-        	  
+  ];     
+            
        //constructor creates a new map - only center and zoom required
-       	map = new google.maps.Map(document.getElementById('map'), {
-       		center: {lat: 37.996481, lng: -122.59430600000002},
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: 37.996481, lng: -122.59430600000002},
           styles: styles,
-       		zoom: 15,
-       		mapTypeControl: false
+          zoom: 15,
+          mapTypeControl: false
 
-       	});
+        });
+         map.addListener('center_changed', function() {
+        map.setCenter(marker.getPosition());
+  });
 
-        infowindow = new google.maps.InfoWindow;
+  // marker.addListener('click', function() {
+  //   map.setZoom(8);
+  //   map.setCenter(marker.getPosition());
+  // });
+
+        infowindow = new google.maps.InfoWindow();
        
 
          ko.applyBindings(new ViewModel()); 
       }  
-        	
+          
   
     
     
-
-       
- 		
- 	  
- 	    
-  
