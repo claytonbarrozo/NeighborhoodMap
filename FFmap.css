@@ -8,14 +8,14 @@ margin:0;
 .place {
 height:100%;
 width:10%;
-font-size:small;
+font-size:medium;
 z-index:50;
 top:0;
 left:0;
 position:fixed;
 background-color:grey;
 font-family:Arial;
-color:blue;
+
 padding:150px 1cm 1cm;
 }
 
@@ -26,8 +26,8 @@ top:0;
 left:0;
 z-index:100;
 width:10%;
-font-size:small;
-padding:1cm;
+font-size:medium;
+padding:38px;
 }
 
 #map {
@@ -35,12 +35,19 @@ height:100%;
 width:100%;
 z-index:1;
 }
-@media screen and (max-width: 667px) {
+@media screen and (max-width: 736px) {
   .place{
   transform: translate(-100%,0);
   }
    .search-box{
     transform: translate(-100%,0);
-   } 
+   }
+
+   .menu {
+    height: 20px;
+    width: 20px;
+    z-index: 25;
+   }
+  
 }
    
