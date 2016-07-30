@@ -109,7 +109,7 @@ var ViewModel = function(){
       animation: google.maps.Animation.DROP   
         
     }); 
-      bounds.extend(marker.position);
+      //bounds.extend(marker.position);
       location.marker = marker;  
 
       marker.addListener('click', function(){
@@ -127,11 +127,11 @@ var ViewModel = function(){
         google.maps.event.trigger(location.marker,
           'click');      
         };
-    map.fitBounds(bounds);
+    //map.fitBounds(bounds);
   };     
      
 //function to load map and start app
-var bounds;
+//var bounds;
   function initMap(){ 
 
   var styles = [
@@ -255,14 +255,16 @@ var bounds;
         map = new google.maps.Map(document.getElementById('map'), {
           center: {lat: 37.9873444, lng: -122.5876811},
           styles: styles,
-          zoom: 15,
+          zoom: 16,
           mapTypeControl: false
 
         });
     
-        bounds = new google.maps.LatLngBounds();
+        //bounds = new google.maps.LatLngBounds();
         infowindow = new google.maps.InfoWindow();
-       
+        google.maps.event.addDomListener(window, 'resize', function(){
+          map.setZoom(16);
+        });
 
          ko.applyBindings(new ViewModel()); 
       }  

@@ -35,4 +35,12 @@ height:100%;
 width:100%;
 z-index:1;
 }
+@media screen and (max-width: 667px) {
+  .place{
+  transform: translate(-100%,0);
+  }
+   .search-box{
+    transform: translate(-100%,0);
+   } 
+}
    
