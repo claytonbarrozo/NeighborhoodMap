@@ -127,6 +127,13 @@ var ViewModel = function(){
         google.maps.event.trigger(location.marker,
           'click');      
         };
+     self.openNav = function(){
+      document.getElementsByClassName("place")[0].style.display = "block";
+      document.getElementsByClassName("search-box")[0].style.display = "block"; 
+     } 
+     // self.closeNav = function() {
+     //  document.getElementsByClassName("menu").style.display = "none";
+     // } 
     //map.fitBounds(bounds);
   };     
      
