@@ -3,7 +3,7 @@
 
 
 var business_id = location.yelpId;
-//var business_id = 'village-sake-fairfax';
+
 var yelp_url = 'https://api.yelp.com/v2/business/' + business_id;
 
 function nonce_generate() {
