@@ -15,7 +15,6 @@ left:0;
 position:fixed;
 background-color:grey;
 font-family:Arial;
-
 padding:150px 1cm 1cm;
 }
 
@@ -35,6 +34,7 @@ height:100%;
 width:100%;
 z-index:1;
 }
+
 @media screen and (max-width: 736px) {
   .place{
   transform: translate(-100%,0);
@@ -42,12 +42,13 @@ z-index:1;
    .search-box{
     transform: translate(-100%,0);
    }
-
-   .menu {
-    height: 20px;
-    width: 20px;
+  .menu {
     z-index: 25;
+    padding: 10px;
+    position: absolute;
+    top: 0;
    }
+   
   
 }
    
