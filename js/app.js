@@ -62,9 +62,7 @@
 var ViewModel = function(){
    var self = this;
     self.query = ko.observable('');//property to store the filter, empty str so not undefined in computed function
-    self.locations = ko.observableArray(Model);//turns data into ObArray
-
-   
+    self.locations = ko.observableArray(Model);//turns data into ObArray 
     self.showQuery = ko.computed(function(locations){
       
      var filter = self.query().toLowerCase();
@@ -94,11 +92,9 @@ var ViewModel = function(){
             return false;//hide list item
           }        
             }); 
-
        }
        }); 
-          
-        
+               
     self.locations().forEach(function(location){
       
     var marker = new google.maps.Marker ({
@@ -109,13 +105,11 @@ var ViewModel = function(){
       animation: google.maps.Animation.DROP   
         
     }); 
-      //bounds.extend(marker.position);
       location.marker = marker;  
 
       marker.addListener('click', function(){
            
           yelpCall(location);
-          //map.setCenter(marker.getPosition());
           marker.setAnimation(google.maps.Animation.BOUNCE);
           setTimeout(function(){
             location.marker.setAnimation(null);
@@ -128,17 +122,20 @@ var ViewModel = function(){
           'click');      
         };
      self.openNav = function(){
-      document.getElementsByClassName("place")[0].style.display = "block";
-      document.getElementsByClassName("search-box")[0].style.display = "block"; 
+      document.getElementsByClassName("place")[0].style.visibility = "visible";
+      document.getElementsByClassName("search-box")[0].style.visibility = "visible";
+
      } 
-     // self.closeNav = function() {
-     //  document.getElementsByClassName("menu").style.display = "none";
-     // } 
-    //map.fitBounds(bounds);
+      self.closeNav = function() {
+
+      document.getElementsByClassName("place")[0].style.visibility = "hidden";
+      document.getElementsByClassName("search-box")[0].style.visibility = "hidden";
+
+     } 
   };     
      
 //function to load map and start app
-//var bounds;
+
   function initMap(){ 
 
   var styles = [
@@ -267,7 +264,6 @@ var ViewModel = function(){
 
         });
     
-        //bounds = new google.maps.LatLngBounds();
         infowindow = new google.maps.InfoWindow();
         google.maps.event.addDomListener(window, 'resize', function(){
           map.setZoom(16);

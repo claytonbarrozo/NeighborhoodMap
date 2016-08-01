@@ -11,7 +11,7 @@
    <body>
       <div id='map'></div>
         <div class = "menu" data-bind="click: openNav">
-         <img src = "menu.svg" style = "height: 40px" "width: 40px">
+         <img src = "menu.svg">
          </div>
      
       <div class = "search-box">
@@ -19,7 +19,7 @@
          <span>Fairfax Places</span>
          <input placeholder="?" style="width: 60%" data-bind="textInput: query">
       </div>
-      <ul class = "place" data-bind="foreach: showQuery">
+      <ul class = "place" data-bind="foreach: showQuery, click: closeNav">
          <li data-bind="text: title,click: $parent.showInfo" style="color: #fff"></li>
       </ul>
       <script src="js/jQuery.js"></script> 
